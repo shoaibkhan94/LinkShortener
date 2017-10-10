@@ -4,12 +4,11 @@ import {check, Match} from 'meteor/check';
 
 Meteor.methods({
     'links.insert' : function (url) {
-        console.log("Attempting to save ", url);
         check(url, Match.Where(url => validUrl.isUri(url)));
 
         //now we can go ono to generate a random token
         var token = Math.random().toString(36).slice(-5);
-        console.log(token);
+        Links.insert({'url' : url, 'token' : token, 'clicks' : 0});
     }
 });
 
