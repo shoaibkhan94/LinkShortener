@@ -6,10 +6,9 @@ Meteor.methods({
     'links.insert' : function (url) {
         check(url, Match.Where(url => validUrl.isUri(url)));
 
-        //now we can go ono to generate a random token
+        //now we can go onto generate a random token
         var token = Math.random().toString(36).slice(-5);
         Links.insert({'url' : url, 'token' : token, 'clicks' : 0});
     }
 });
-
 export const Links = new Mongo.Collection('links');
